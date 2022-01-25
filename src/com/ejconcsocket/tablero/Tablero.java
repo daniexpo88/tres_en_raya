@@ -11,11 +11,21 @@ public class Tablero {
 	private int numTurno = 0;
 	private int ultimoTurno;
 	Scanner sc = new Scanner(System.in);
+	public Tablero() {
+		
+	}
+	public Tablero(char[][] tablero) {
+		this.tablero = tablero;
+	}
 	public char[][] pasarTablero() {
 		return this.tablero;
 	}
-	
-	
+	public void setTablero(char[][] t) {
+		this.tablero=t;
+	}
+	/**
+	 * Empieza el juego y pinta el tablero
+	 */
 	public void empezarJuego() {
 		for(int i = 0; i<3; i++) {
 			for(int j= 0; j<3; j++) {
@@ -44,14 +54,13 @@ public class Tablero {
 		int lugar;
 		do {
 		System.out.println("Turno jugador " + this.ficha);
-		System.out.println("Donde desea colocar la ficha (1-9)");
+		System.out.println("Donde desea colocar la ficha (1-9) Si deseas guardar aquí la partida entonces introduce 0");
 		lugar = sc.nextInt();
 		if(lugar > 9 || lugar < 1) {
 			System.err.println("INTRODUCE UNA POSICIÓN VÁLIDA");
 			ManejaTablero.pintarTablero(pasarTablero());
 		}
-		}while(lugar > 9 || lugar < 1);
-		
+		}while(lugar!=0 && lugar > 9 || lugar < 0);
 			if (lugar == 1) {
 				if (this.tablero[0][0] == this.ficha1 || this.tablero[0][0] == this.ficha2) {
 					System.err.println("Ya hay una ficha colocada ahí");
